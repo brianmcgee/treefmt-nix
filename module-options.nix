@@ -56,6 +56,24 @@ let
               type = types.listOf types.str;
               default = [ ];
             };
+
+            pipeline = mkOption {
+              description = "A name used to group formatters which should run in a specific order.";
+              type = types.str;
+              default = "";
+            };
+
+            priority = mkOption {
+              description = ''
+                An integer used to indicate the order in which a formatter should be executed in a pipeline.
+                The lower the number, the higher the precedence e.g. 0 first, 1 next and so on.
+
+                Formatters with the same priority are executed in lexicographical order to ensure successive
+                applications are deterministic.
+              '';
+              type = types.int;
+              default = 0;
+            };
           };
         }
       ]);
